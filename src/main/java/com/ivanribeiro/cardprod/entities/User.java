@@ -1,5 +1,7 @@
 package com.ivanribeiro.cardprod.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,9 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    
+    @JsonIgnore
+    private String passwd;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -42,7 +47,15 @@ public class User {
         this.email = email;
     }
 
-    public Department getDepartment() {
+    public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	public Department getDepartment() {
         return department;
     }
 
